@@ -54,6 +54,7 @@ drawBoard();
 /////////////////////////
 //CREATE PIECES & COLOR//
 /////////////////////////
+
 const PIECES = [
     [Z, "red"],
     [S, "green"],
@@ -71,16 +72,30 @@ let p = new Piece(PIECES[0][0], PIECES[0][1]);
 /////CREATE OBJECT//////
 ////////////////////////
 function Piece(tetromino,color) {
-    this.tetromino = tetromeno;
+    this.tetromino = tetromino;
     this.color = color;
 
-    this.tetromino = 0;
-    this.activeTetomino =this.tetromino[this.tetromino];
+    this.tetrominoN = 0;
+    this.activeTetromino = this.tetromino[this.tetrominoN];
 
-    this.x = 0;
-    this.y = 0;
+    this.x = 5;
+    this.y = 4;
 
 }
+
+//adding the piece to the board
+Piece.prototype.draw = function() {
+    for (r = 0; r < this.activeTetromino.length; r++){
+        for(c = 0; c < this.activeTetromino.length; c++){
+            if(this.activeTetromino[r][c]){
+                drawSquare(this.x + c, this.y + r, this.color);
+            }
+        }
+    }
+}
+
+p.draw();
+
 
 
 
