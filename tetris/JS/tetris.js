@@ -9,8 +9,8 @@ const scoreElement = $('#score')[0]; //use jquery to call the score elemnt from 
 ////////SETTING THE GAME BOARD////////
 //////////////////////////////////////
 const ROW = 20; //20 ROWS
-const COL = 10; //10 COLUMNS
-const SQ = 30; // the square is 30 px
+const COL = COLUMN =  10; //10 COLUMNS
+const SQ = squareSize = 30; // the square is 30 px
 const VACANT = "WHITE"; // color of an empty square
 
 //////////////////////////////////////
@@ -113,7 +113,7 @@ Piece.prototype.fill = function(color){
 ////////Draw AND UNDRAW THE TETROMINO/////////
 //////////////////////////////////////////////
 Piece.prototype.draw = function(){
-Piece.prototype.unDraw = function(){ //same function as unDraw except use color instead of the color of the tetromino
+ //same function as unDraw except use color instead of the color of the tetromino
     this.fill(this.color); 
 }
 
@@ -213,29 +213,29 @@ Piece.prototype.lock = function(){
 //eleminate the row while incimenting the score by 10 points
 //loops need to be in the lock function, because everytime a tetromino reaches the bottom of the board
 //check to see if there is a full row 
-for(r = 0; r < ROW; r++){ //looping over all the rows on the board
-    let isRowFull = true; //declase 'isrowFull'
-    for( c = 0; c < COL; c++){ //looping over all the columns on the board
-        isRowFull = isRowFull && (board[r][c] != VACANT); //determining if the row is full by checking for vacant squares
-    }
-    if(isRowFull){ //moving down rows above the full row
-        for( y = r; y > 1; y--){ //start from the row, is the row is greater than one then decriment y by 1
-            for( c = 0; c < COL; c++){ //looping over the columns
-                board[y][c] = board[y-1][c]; //1st row becomes the 2nd, 2nd becomes the 3rd etc..
+    for(r = 0; r < ROW; r++){ //looping over all the rows on the board
+        let isRowFull = true; //declase 'isrowFull'
+        for( c = 0; c < COL; c++){ //looping over all the columns on the board
+            isRowFull = isRowFull && (board[r][c] != VACANT); //determining if the row is full by checking for vacant squares
+        }
+        if(isRowFull){ //moving down rows above the full row
+            for( y = r; y > 1; y--){ //start from the row, is the row is greater than one then decriment y by 1
+                for( c = 0; c < COL; c++){ //looping over the columns
+                    board[y][c] = board[y-1][c]; //1st row becomes the 2nd, 2nd becomes the 3rd etc..
+                }
             }
+            for( c = 0; c < COL; c++){ //// the top row board[0][..] has no row above it
+                board[0][c] = VACANT; //create a new vacant row
+            }
+            // increment the score
+            score += 10;
         }
-        for( c = 0; c < COL; c++){ //// the top row board[0][..] has no row above it
-            board[0][c] = VACANT; //create a new vacant row
-        }
-        // increment the score
-        score += 10;
     }
-}
-// update the board
-drawBoard();
+    // update the board
+    drawBoard();
 
-// update the score
-scoreElement.innerHTML = score;
+    // update the score
+    scoreElement.innerHTML = score;
 }
 
 //////////////////////////////////////////////
@@ -262,19 +262,6 @@ Piece.prototype.collision = function(x,y,piece){
     }
     return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ///////////////////////////////////////////////
@@ -319,3 +306,10 @@ function drop(){
 }
 
 drop();
+
+//create a restart button
+$(document).ready(function(){
+    $("button").click(function(){
+        location.reload(true);
+    })
+})
