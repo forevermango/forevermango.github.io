@@ -203,9 +203,14 @@ function drop(){
 
 drop();
 
-//////////////////////////////////////
-/////////unDraw THE TETROMINO/////////
-//////////////////////////////////////
-Piece.prototype.unDraw = function(){
+//////////////////////////////////////////////
+////////Draw AND UNDRAW THE TETROMINO/////////
+//////////////////////////////////////////////
+Piece.prototype.draw = function(){
+    this.fill(this.color);
+}
+
+
+Piece.prototype.unDraw = function(){ //same function as draw except use white color instead of the color of the tetromino
     this.fill(VACANT);
 }
