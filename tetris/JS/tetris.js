@@ -159,3 +159,25 @@ Piece.prototype.rotate = function(){ //function to rotate the tetromino
         this.draw(); //call the draw function to see the piece
     }
 }
+
+///////////////////////////////////////////////
+///////JQUERY EVENT LISTENER FUNCTION//////////
+///////////////////////////////////////////////
+// CONTROL the piece
+$(function() {
+    $(document).keydown(function(event) {
+        if(event.keyCode == 37){ //if the left arrow button is called move tetromino to the left
+            p.moveLeft();
+            dropStart = Date.now();
+        }else if(event.keyCode == 38){ //if the up arrow button is called move tetromino up
+            p.rotate();
+            dropStart = Date.now();
+        }else if(event.keyCode == 39){ //if the right arrow button is called move tetromino to the right
+            p.moveRight();
+            dropStart = Date.now();
+        }else if(event.keyCode == 40){ //if the down arrow button is called move tetromino down
+            p.moveDown();
+        }
+    });
+ 
+});
