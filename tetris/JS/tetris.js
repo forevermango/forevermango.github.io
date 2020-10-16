@@ -50,6 +50,7 @@ drawBoard(); //call the function
 ///////////////////////////////////
 ///////DRAW THE TETROMINOES////////
 ///////////////////////////////////
+//the tetromino pieces are already created in the tetrominoes.js file. 
 const PIECES = [
     [S,"green"],
     [T,"purple"],
@@ -60,7 +61,16 @@ const PIECES = [
     [Z, "red"]
 ];
 
-//the tetromino pieces are already created in the tetrominoes.js file. 
+
+
+////////////////////////////////////////////
+/////FUNCTION TO GENERATE RANDOM PIECES/////
+////////////////////////////////////////////
+function randomPiece(){
+    let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
+    return new Piece( PIECES[r][0],PIECES[r][1]);
+}
+
 
 ////////////////////////////////////////
 /////FUNCTION TO DRAW THE TETROMINO/////
