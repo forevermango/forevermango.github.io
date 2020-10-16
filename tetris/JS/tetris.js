@@ -20,7 +20,7 @@ function drawSquare(x,y,color){  //the function has three parameters; x - the nu
     ctx.fillStyle = color; // color will be the color given to the tetromino
     ctx.fillRect(x*SQ,y*SQ,SQ,SQ); //instead of using pixels squares are used, the number of squares on the x and y axis will be counted. 
     ctx.strokeStyle = "BLACK";
-    ctx.strokeRect(x*SQ,y*SQ,SQ,SQ);
+    ctx.strokeRect(x*SQ,y*SQ,SQ,SQ); //parameters (x, y, width, height)
 }
 
 /////////////////////////////////////////
@@ -50,15 +50,16 @@ drawBoard(); //call the function
 ///////////////////////////////////
 ///////DRAW THE TETROMINOES////////
 ///////////////////////////////////
-//the tetromino pieces are already created in the tetrominoes.js file. 
+//the tetromino pieces are already created in the tetrominoes.js file.
+//creating the array datatype to call later 
 const PIECES = [
-    [S,"green"],
-    [T,"purple"],
-    [O,"yellow"],
-    [L,"orange"],
-    [I,"cyan"],
-    [J,"blue"]
-    [Z, "red"]
+    [S,"green"], //0
+    [T,"purple"], // 1
+    [O,"yellow"], //2
+    [L,"orange"], // 3
+    [I,"cyan"], //4
+    [J,"blue"] //5 
+    [Z, "red"] //6
 ];
 
 
@@ -67,9 +68,15 @@ const PIECES = [
 /////FUNCTION TO GENERATE RANDOM PIECES/////
 ////////////////////////////////////////////
 function randomPiece(){
-    let r = randomN = Math.floor(Math.random() * PIECES.length) // 0 -> 6
-    return new Piece( PIECES[r][0],PIECES[r][1]);
-}
+    let r = randomN = Math.floor(Math.random() * PIECES.length) //math.floor rounds the number to an integer
+    return new Piece( PIECES[r][0],PIECES[r][1]); //math.raandom generates numbers between 0 and 1  
+}  //to generate numbers between 0 and 7, multiply math.random by the length of the tetromino array
+//return only the first value (letter) in the tetromino array by using [r][0]
+//add the math.random function to the 'moveDown' function, after calling the 'this.lock()" function
+//this tells the code that once the tetromino is locked, generate a new tetromino 
+
+let p = randomPiece();
+
 
 
 ////////////////////////////////////////
