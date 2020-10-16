@@ -101,6 +101,20 @@ Piece.prototype.fill = function(color){
     }
 }
 
+
+//////////////////////////////////////////////
+////////Draw AND UNDRAW THE TETROMINO/////////
+//////////////////////////////////////////////
+Piece.prototype.draw = function(){
+    this.fill(this.color);
+}
+
+
+Piece.prototype.unDraw = function(){ //same function as draw except use white color instead of the color of the tetromino
+    this.fill(VACANT);
+}
+
+
 //////////////////////////////////////////////
 //////////////////////////////////////////////
 /////////GIVING THE PIECES MOBILITY///////////
@@ -203,14 +217,3 @@ function drop(){
 
 drop();
 
-//////////////////////////////////////////////
-////////Draw AND UNDRAW THE TETROMINO/////////
-//////////////////////////////////////////////
-Piece.prototype.draw = function(){
-    this.fill(this.color);
-}
-
-
-Piece.prototype.unDraw = function(){ //same function as draw except use white color instead of the color of the tetromino
-    this.fill(VACANT);
-}
