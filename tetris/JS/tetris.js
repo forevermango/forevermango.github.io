@@ -185,7 +185,7 @@ $(function() {
 //////////////////////////////////////////////////////////
 ////CREATE TIMMER TO ALLOW PIECE TO MOVE DOWN STEADILY////
 //////////////////////////////////////////////////////////
-// drop the piece every 1sec
+// drop the piece every 1 sec
 
 let dropStart = Date.now(); //create function called drop 
 let gameOver = false;
@@ -202,3 +202,10 @@ function drop(){
 }
 
 drop();
+
+//////////////////////////////////////
+/////////unDraw THE TETROMINO/////////
+//////////////////////////////////////
+Piece.prototype.unDraw = function(){
+    this.fill(VACANT);
+}
