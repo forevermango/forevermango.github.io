@@ -50,6 +50,15 @@ drawBoard(); //call the function
 ///////////////////////////////////
 ///////DRAW THE TETROMINOES////////
 ///////////////////////////////////
+const PIECES = [
+    [S,"green"],
+    [T,"purple"],
+    [O,"yellow"],
+    [L,"orange"],
+    [I,"cyan"],
+    [J,"blue"]
+    [Z, "red"]
+];
 
 //the tetromino pieces are already created in the tetrominoes.js file. 
 
