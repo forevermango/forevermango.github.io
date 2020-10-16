@@ -207,7 +207,7 @@ Piece.prototype.lock = function(){
 
 
 ///////////////////////////////////////////////
-//////////////RRMOVING A FULL ROW//////////////
+//////////////RMOVING A FULL ROW//////////////
 ///////////////////////////////////////////////
 
 //eleminate the row while incimenting the score by 10 points
@@ -238,8 +238,30 @@ drawBoard();
 scoreElement.innerHTML = score;
 }
 
-
-
+//////////////////////////////////////////////
+//////////////COLLISION FUNCTION//////////////
+//////////////////////////////////////////////
+Piece.prototype.collision = function(x,y,piece){
+    for( r = 0; r < piece.length; r++){
+        for(c = 0; c < piece.length; c++){
+            if(!piece[r][c]){ //skipping any vacant squares
+                continue;
+            }
+            let newX = this.x + c + x; //mapping the location of the piece after movement
+            let newY = this.y + r + y;
+            if(newX < 0 || newX >= COL || newY >= ROW){ // skip newY < 0; board[-1] will stop the game
+                return true;
+            }
+            if(newY < 0){
+                continue;
+            }
+            if( board[newY][newX] != VACANT){ //condition to check for a locked piece
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 
 
@@ -297,4 +319,3 @@ function drop(){
 }
 
 drop();
-
