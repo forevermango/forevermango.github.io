@@ -97,6 +97,13 @@ function Piece(tetromino,color){ //set the parameters
 //////CREATES PATTERIN FOR THE TETERMINO//////
 ////////////TO APPEAR ON THE BOARD////////////
 //////////////////////////////////////////////
+
+
+
+/* prototype constructor allows you to add 
+new properties and methods to the Array() object.
+ */
+
 Piece.prototype.fill = function(color){
     for( r = 0; r < this.activeTetromino.length; r++){
         for(c = 0; c < this.activeTetromino.length; c++){
@@ -291,18 +298,19 @@ $(function() {
 //////////////////////////////////////////////////////////
 // drop the piece every 1 sec
 
-let dropStart = Date.now(); //create function called drop 
+let dropStart = Date.now(); //create function called dropStart and set it to the current date and time
 let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart; //the difference between now and the start of when the tetromino is moved down
     if(delta > 1000){ //created an if statement that if the differnce in the time is less than one second 
-        p.moveDown();
+        p.moveDown(); //call the moveDown function while piece is dropping down
         dropStart = Date.now(); //the piece will drop down every one second
     }
     if( !gameOver){
-        requestAnimationFrame(drop);
-    }
+        requestAnimationFrame(drop); //if the game is not over release the tetromino
+    }   //method tells the browser that you wish to perform an animation and requests that the browser calls a specified function to update an animation before the next repaint. 
+        //The method takes a callback as an argument to be invoked before the repaint.
 }
 
 drop();
@@ -311,5 +319,37 @@ drop();
 $(document).ready(function(){
     $("button").click(function(){
         location.reload(true);
-    })
-})
+        //The reload() function takes an optional parameter that can be set to 
+       //true to force a reload from the server rather than the cache.    })
+});
+
+
+
+/////////////////////////////////////////RESOURCES///////////////////////////////////////
+//https://www.w3schools.com/html/html5_canvas.asp
+//https://stackoverflow.com/questions/46923549/need-to-increment-score-in-jquery-how-do-i-change-the-text
+//https://hackaday.com/2010/06/20/tetris-code-theory-explained/
+//https://www.w3resource.com/javascript-exercises/javascript-drawing-exercise-1.php
+//https://stackoverflow.com/questions/25999747/how-to-create-board-nxn-using-javascript-and-jquery
+//https://www.w3schools.com/js/js_arrays.asp
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+//https://medium.com/@josephcardillo/using-math-random-in-javascript-c49eff920b11#:~:text=In%20JavaScript%2C%20to%20get%20a,random()%20function.&text=If%20you%20want%20a%20random,then%20round%20up%20or%20down.
+//https://www.w3schools.com/Js/js_classes.asp
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+//https://www.w3schools.com/jsref/jsref_prototype_array.asp
+//https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Collision_detection
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now
+//https://www.tutorialrepublic.com/faq/how-to-refresh-a-page-with-jquery.php#:~:text=Answer%3A%20Use%20the%20JavaScript%20location,be%20reloaded%20from%20the%20server.
+//https://www.freecodecamp.org/news/learn-javascript-by-creating-a-tetris-game/
+//https://www.thatsoftwaredude.com/content/8519/coding-tetris-in-javascript-part-1
+//https://www.javascripttutorial.net/javascript-recursive-function/
+//https://www.sitepoint.com/recursion-functional-javascript/
+//https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+//https://www.w3schools.com/jsref/met_loc_reload.asp
+//https://api.jquery.com/click/
+//https://stackoverflow.com/questions/12627443/jquery-click-vs-onclick
+//https://stackoverflow.com/questions/5404839/how-can-i-refresh-a-page-with-jquery
+//https://javascript.info/recursion
+
+//Image
+/* /*https://www.pexels.com/photo/1980s-3d-80-80s-2386282 */
