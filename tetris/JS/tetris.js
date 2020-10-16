@@ -184,6 +184,76 @@ Piece.prototype.rotate = function(){ //function to rotate the tetromino
 
 let score = 0;
 
+/////////////////////////////////////////////
+///////FUNCTION TO LOCK THE TETROMINO////////
+/////////////////////////////////////////////
+Piece.prototype.lock = function(){
+    for( r = 0; r < this.activeTetromino.length; r++){ //looping over all the tetromino squares
+        for(c = 0; c < this.activeTetromino.length; c++){
+            if( !this.activeTetromino[r][c]){ //conditional to skip a vacant square
+                continue; 
+            }
+            if(this.y + r < 0){ //if there are less than 0 vacant squares call the alert function
+                alert("Game Over");
+                // stop request animation frame
+                gameOver = true;
+                break; //break from the loop
+            }
+            // we lock the piece
+            board[this.y+r][this.x+c] = this.color;
+                   //square's coordinates, active pieces color          
+        }
+    }
+
+
+///////////////////////////////////////////////
+//////////////RRMOVING A FULL ROW//////////////
+///////////////////////////////////////////////
+for(r = 0; r < ROW; r++){
+    let isRowFull = true;
+    for( c = 0; c < COL; c++){
+        isRowFull = isRowFull && (board[r][c] != VACANT);
+    }
+    if(isRowFull){
+        // if the row is full
+        // we move down all the rows above it
+        for( y = r; y > 1; y--){
+            for( c = 0; c < COL; c++){
+                board[y][c] = board[y-1][c];
+            }
+        }
+        // the top row board[0][..] has no row above it
+        for( c = 0; c < COL; c++){
+            board[0][c] = VACANT;
+        }
+        // increment the score
+        score += 10;
+    }
+}
+// update the board
+drawBoard();
+
+// update the score
+scoreElement.innerHTML = score;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////////////////////////
 ///////JQUERY EVENT LISTENER FUNCTION//////////
 ///////////////////////////////////////////////
