@@ -24,3 +24,8 @@ canvas {
 h2 {
     color: hotpink;
 }
+
+@viewport {
+    width: device-width ;
+    zoom: 1.0 ;
+  }
