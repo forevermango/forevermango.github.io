@@ -46,3 +46,23 @@ function drawBoard(){ //create drawboard function
 }
 
 drawBoard(); //call the function
+
+///////////////////////////////////
+///////DRAW THE TETROMINOES////////
+///////////////////////////////////
+
+//the tetromino pieces are already created in the tetrominoes.js file. 
+
+////////////////////////////////////////
+/////FUNCTION TO DRAW THE TETROMINO/////
+////////////////////////////////////////
+function Piece(tetromino,color){ //set the parameters
+    this.tetromino = tetromino;
+    this.color = color;
+    
+    this.tetrominoN = 0; // we start from the first pattern in the array of arrays
+    this.activeTetromino = this.tetromino[this.tetrominoN]; //the tetromino we are playing with
+    
+    this.x = 3; //add the coordnates to set the peices when they appear on the board
+    this.y = -2;
+}
