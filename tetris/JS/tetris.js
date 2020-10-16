@@ -209,22 +209,23 @@ Piece.prototype.lock = function(){
 ///////////////////////////////////////////////
 //////////////RRMOVING A FULL ROW//////////////
 ///////////////////////////////////////////////
-for(r = 0; r < ROW; r++){
-    let isRowFull = true;
-    for( c = 0; c < COL; c++){
-        isRowFull = isRowFull && (board[r][c] != VACANT);
+
+//eleminate the row while incimenting the score by 10 points
+//loops need to be in the lock function, because everytime a tetromino reaches the bottom of the board
+//check to see if there is a full row 
+for(r = 0; r < ROW; r++){ //looping over all the rows on the board
+    let isRowFull = true; //declase 'isrowFull'
+    for( c = 0; c < COL; c++){ //looping over all the columns on the board
+        isRowFull = isRowFull && (board[r][c] != VACANT); //determining if the row is full by checking for vacant squares
     }
-    if(isRowFull){
-        // if the row is full
-        // we move down all the rows above it
-        for( y = r; y > 1; y--){
-            for( c = 0; c < COL; c++){
-                board[y][c] = board[y-1][c];
+    if(isRowFull){ //moving down rows above the full row
+        for( y = r; y > 1; y--){ //start from the row, is the row is greater than one then decriment y by 1
+            for( c = 0; c < COL; c++){ //looping over the columns
+                board[y][c] = board[y-1][c]; //1st row becomes the 2nd, 2nd becomes the 3rd etc..
             }
         }
-        // the top row board[0][..] has no row above it
-        for( c = 0; c < COL; c++){
-            board[0][c] = VACANT;
+        for( c = 0; c < COL; c++){ //// the top row board[0][..] has no row above it
+            board[0][c] = VACANT; //create a new vacant row
         }
         // increment the score
         score += 10;
