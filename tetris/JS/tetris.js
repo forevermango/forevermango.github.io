@@ -181,3 +181,24 @@ $(function() {
     });
  
 });
+
+//////////////////////////////////////////////////////////
+////CREATE TIMMER TO ALLOW PIECE TO MOVE DOWN STEADILY////
+//////////////////////////////////////////////////////////
+// drop the piece every 1sec
+
+let dropStart = Date.now(); //create function called drop 
+let gameOver = false;
+function drop(){
+    let now = Date.now();
+    let delta = now - dropStart; //the difference between now and the start of when the tetromino is moved down
+    if(delta > 1000){
+        p.moveDown();
+        dropStart = Date.now();
+    }
+    if( !gameOver){
+        requestAnimationFrame(drop);
+    }
+}
+
+drop();
