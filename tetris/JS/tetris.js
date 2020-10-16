@@ -83,5 +83,26 @@ function Piece(tetromino,color){ //set the parameters
     this.activeTetromino = this.tetromino[this.tetrominoN]; //the tetromino we are playing with
     
     this.x = 3; //add the coordnates to set the peices when they appear on the board
-    this.y = -2;
+    this.y = 0;
 }
+
+//////////////////////////////////////////////
+//////CREATES PATTERIN FOR THE TETERMINO//////
+////////////TO APPEAR ON THE BOARD////////////
+//////////////////////////////////////////////
+Piece.prototype.fill = function(color){
+    for( r = 0; r < this.activeTetromino.length; r++){
+        for(c = 0; c < this.activeTetromino.length; c++){
+            // telling the code to only draw on the filled squares
+            if( this.activeTetromino[r][c]){
+                drawSquare(this.x + c,this.y + r, color);
+            }
+        }
+    }
+}
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+/////////GIVING THE PIECES MOBILITY///////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
