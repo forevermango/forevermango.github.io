@@ -90,7 +90,7 @@ function Piece(tetromino,color){ //set the parameters
     this.activeTetromino = this.tetromino[this.tetrominoN]; //the tetromino we are playing with
     
     this.x = 3; //add the coordnates to set the peices when they appear on the board
-    this.y = 0;
+    this.y = -2;
 }
 
 //////////////////////////////////////////////
@@ -113,7 +113,8 @@ Piece.prototype.fill = function(color){
 ////////Draw AND UNDRAW THE TETROMINO/////////
 //////////////////////////////////////////////
 Piece.prototype.draw = function(){
-    this.fill(this.color);
+Piece.prototype.unDraw = function(){ //same function as unDraw except use color instead of the color of the tetromino
+    this.fill(this.color); 
 }
 
 
@@ -128,16 +129,16 @@ Piece.prototype.unDraw = function(){ //same function as draw except use white co
 //////////////////////////////////////////////
 //////////////////////////////////////////////
 Piece.prototype.moveDown = function(){ //function to move down the tetromino
-    if(!this.collision(0,1,this.activeTetromino)){
-        this.unDraw();
+    if(!this.collision(0,1,this.activeTetromino)){ //if there is no collision detected on the board
+        this.unDraw(); //call the unDraw function to create vacant squares as the tetromeno moves down
         this.y++; //incriment the y position
         this.draw(); //draw the piece in the new position
     }else{
         // we lock the piece and generate a new one
         //this helps prevent the piece from dragging 
         //down the board
-        this.lock();
-        p = randomPiece();
+        this.lock(); //when the piece reaches the bottom of the board lock the tetromino
+        p = randomPiece(); //call a random tetromino once a piece us locked
     }
     
 }
@@ -180,6 +181,8 @@ Piece.prototype.rotate = function(){ //function to rotate the tetromino
         this.draw(); //call the draw function to see the piece
     }
 }
+
+let score = 0;
 
 ///////////////////////////////////////////////
 ///////JQUERY EVENT LISTENER FUNCTION//////////
