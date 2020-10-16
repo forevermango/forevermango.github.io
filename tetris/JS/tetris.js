@@ -192,9 +192,9 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart; //the difference between now and the start of when the tetromino is moved down
-    if(delta > 1000){
+    if(delta > 1000){ //created an if statement that if the differnce in the time is less than one second 
         p.moveDown();
-        dropStart = Date.now();
+        dropStart = Date.now(); //the piece will drop down every one second
     }
     if( !gameOver){
         requestAnimationFrame(drop);
