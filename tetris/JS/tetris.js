@@ -106,3 +106,56 @@ Piece.prototype.fill = function(color){
 /////////GIVING THE PIECES MOBILITY///////////
 //////////////////////////////////////////////
 //////////////////////////////////////////////
+Piece.prototype.moveDown = function(){ //function to move down the tetromino
+    if(!this.collision(0,1,this.activeTetromino)){
+        this.unDraw();
+        this.y++; //incriment the y position
+        this.draw(); //draw the piece in the new position
+    }else{
+        // we lock the piece and generate a new one
+        //this helps prevent the piece from dragging 
+        //down the board
+        this.lock();
+        p = randomPiece();
+    }
+    
+}
+ 
+Piece.prototype.moveRight = function(){ //function to move right the tetromino
+    if(!this.collision(1,0,this.activeTetromino)){
+        this.unDraw(); //call the undraw function to prevent the tetromino from dragging
+        this.x++; //incriment in the x position 
+        this.draw();
+    }
+}
+
+Piece.prototype.moveLeft = function(){ //function to move left the tetromino
+    if(!this.collision(-1,0,this.activeTetromino)){
+        this.unDraw(); //call the undraw function to prevent the tetromino from dragging
+        this.x--; //decriment in the x position 
+        this.draw();
+    }
+}
+
+Piece.prototype.rotate = function(){ //function to rotate the tetromino
+    let nextPattern = this.tetromino[(this.tetrominoN + 1)%this.tetromino.length]; // tetrominoN was set to 0, this means that the remainder will be 1
+    let kick = 0;
+    
+    if(this.collision(0,0,nextPattern)){ //call collsion function so the tetromino does not move off of the board
+        if(this.x > COL/2){
+            // it's the right wall
+            kick = -1; // we need to move the piece to the left
+        }else{
+            // it's the left wall
+            kick = 1; // we need to move the piece to the right
+        }
+    }
+    
+    if(!this.collision(kick,0,nextPattern)){ //create the collision function 
+        this.unDraw(); //call the unDraw function to move the piece back to the board
+        this.x += kick; //move the tetromino to the left or right of the board
+        this.tetrominoN = (this.tetrominoN + 1)%this.tetromino.length; // tetrominoN was set to 0, this means that the remainder will be 1
+        this.activeTetromino = this.tetromino[this.tetrominoN]; //update the active tetromino
+        this.draw(); //call the draw function to see the piece
+    }
+}
