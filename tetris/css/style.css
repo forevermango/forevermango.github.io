@@ -5,16 +5,22 @@ body {
     font-weight: bold;
     font-family: monospace;
     text-align: center;
-    color: aliceblue;
+    color: rgb(235, 19, 235);
     overflow: hidden;
+    font-weight: bold;
 }
 
 #score {
     text-align: center;
+    color: rgb(235, 19, 235);
 }
 
 canvas {
     align-content: center;
     display: block;
     margin:0 auto;
+}
+
+h2 {
+    color: hotpink;
 }
